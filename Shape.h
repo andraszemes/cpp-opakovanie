@@ -1,5 +1,5 @@
 #ifndef SHAPE_H
-#define SHAEP_H
+#define SHAPE_H
 
 #include <iostream>
 
@@ -14,7 +14,6 @@ public:
         * @param char symbol
         * @desc
             Draw square shape to command line according to dimensions and symbol specified. Maximum width / height is 25 units.
-            Napíšte program, ktorý na obrazovke vytvorí štvorec zo znakov „*“ . Poèet znakov naèítajte zo vstupu, maximálna hodnota je 25.
     */
     static void draw_square(int dimensions, char symbol)
     {
