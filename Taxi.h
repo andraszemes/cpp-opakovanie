@@ -7,12 +7,7 @@
     * @class Taxi
     * @author András Zemes
     * desc
-        Napíšte program, ktorý zo zadanej vzdialenosti vypoèíta platbu taxikárovi, pod¾a sadzobej tabu¾ky:
-        0 – 19km 2 Eur/km
-        20 – 39km 1,8 Eur/km
-        40 – 59km 1,6 Eur/km
-        60km a viac 1,4 Eur/km
-        Zadaná vzdialenos môže by desatinné èíslo.
+        Caculate taxi fare for a certain driving distance according to the pricelist.
 */
 class Taxi
 {
@@ -20,35 +15,35 @@ public:
     Taxi() {}
     /*
         * @return void
-        * @param int cena od km [km]
-        * @param double cena na km [EUR]
+        * @param int cost valid in range from [km]
+        * @param double cost/km [EUR]
         * @desc
-        Nastaví hodnotu v cenníku.
+        Set pricelist entry.
     */
-    cena(int km, double cena)
+    add_pricelist_entry(int km, double cost)
     {
-        cennik.emplace(km, cena);
+        pricelist.emplace(km, cost);
     }
 
     /*
-        * @return double platba taxikára
-        * @param double odjazdená vzdialenos
+        * @return double taxi ride fare
+        * @param double distance
         * @desc
-        Vráti platbu taxikára pod¾a nastavených hodnôt v cenníku.
+        Returns calculated taxi ride fare according to the entered rates in the pricelist.
     */
-    double platba(double vzdialenost)
+    double calculate_fare(double distance)
     {
-        for(auto i=cennik.rbegin(); i!=cennik.rend(); i++)
+        for(auto i=pricelist.rbegin(); i!=pricelist.rend(); i++)
         {
-            if(vzdialenost >= i->first)
+            if(distance >= i->first)
             {
-                return vzdialenost * i->second;
+                return distance * i->second;
             }
         }
     }
 
 private:
-    std::map<int, double> cennik;
+    std::map<int, double> pricelist;
 };
 
 #endif // TAXI_H
